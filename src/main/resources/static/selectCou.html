@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <link href="plugins/images/favicon.png" rel="icon" sizes="16x16" type="image/png">
+    <title>选课系统</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/myjs1.js"></script>
+    <script src="js/search.js"></script>
+    <![endif]-->
+</head>
+
+<body class="fix-header">
+<!-- ============================================================== -->
+<!-- Preloader -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" fill="none" r="20" stroke-miterlimit="10" stroke-width="2"/>
+    </svg>
+</div>
+<!-- ============================================================== -->
+<!-- Wrapper -->
+<!-- ============================================================== -->
+<div id="wrapper">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <nav class="navbar navbar-default navbar-static-top m-b-0">
+        <div class="navbar-header">
+            <div class="top-left-part">
+                <!-- Logo -->
+                <a class="logo" th:href="@{'/selectCou?id='+${student.sid}}">
+                    <!-- Logo icon image, you can use font-icon also --><b>
+                    <!--This is dark logo icon--><img alt="home" class="dark-logo"
+                                                      src="plugins/images/admin-logo.png"/>
+                    <!--This is light logo icon--><img alt="home" class="light-logo"
+                                                       src="plugins/images/admin-logo-dark.png"/>
+                </b>
+                    <!-- Logo text image you can use text also --><span class="hidden-xs">
+                            <!--This is dark logo text--><img alt="home" class="dark-logo"
+                                                              src="plugins/images/admin-text.png"/>
+                    <!--This is light logo text--><img alt="home" class="light-logo"
+                                                       src="plugins/images/admin-text-dark.png"/>
+                        </span> </a>
+            </div>
+            <!-- /Logo -->
+            <ul class="nav navbar-top-links navbar-right pull-right">
+                <li>
+                    <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
+                       href="javascript:void(0)"><i class="fa fa-bars"></i></a>
+                </li>
+                <li>
+                    <form class="app-search hidden-sm hidden-xs m-r-10" id="searchForm" role="search"
+                          th:value="${student.sid}">
+                        <input class="form-control" id="searchText" placeholder="Search..." type="text">
+                        <a href="javascript:void(0);" onclick="SearchBtnClick();">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </form>
+                </li>
+                <li>
+                    <a class="profile-pic" href="#">
+                        <img alt="user-img" class="img-circle" src="plugins/images/users/varun.jpg" width="36">
+                        <b class="hidden-xs" id="user" th:text="${student.name}"></b>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-header -->
+        <!-- /.navbar-top-links -->
+        <!-- /.navbar-static-side -->
+    </nav>
+    <!-- End Top Navigation -->
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav slimscrollsidebar">
+            <div class="sidebar-head">
+                <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span
+                        class="hide-menu">Navigation</span></h3>
+            </div>
+            <ul class="nav" id="side-menu">
+
+
+                <li style="padding: 70px 0 0;">
+                    <a class="waves-effect" th:href="@{'/selectCou?id='+${student.sid}}">
+                        <i aria-hidden="true" class="fa fa-table fa-fw">
+                        </i>选课</a>
+                </li>
+                <li>
+                    <a class="waves-effect" th:href="@{'/Profile?id='+${student.sid}}">
+                        <i aria-hidden="true" class="fa fa-user fa-fw"></i>个人详情</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page Content -->
+    <!-- ============================================================== -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row bg-title">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h4 class="page-title">可选课程</h4>
+                </div>
+
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="white-box">
+                        <h3 class="box-title">以下课程为你可选的课程</h3>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>课程代码</th>
+                                    <th>课程名称</th>
+                                    <th>学分</th>
+                                    <th>上课时间</th>
+                                    <th>任课老师</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="course:${courses}">
+                                    <td>
+                                        <label>
+                                            <input name="checkbox" th:value="${course.cid}" type="checkbox"/>
+                                        </label>
+                                    </td>
+                                    <td th:text="${course.cid}"></td>
+                                    <td th:text="${course.cname}"></td>
+                                    <td th:text="${course.credit}"></td>
+                                    <td th:text="${course.time}"></td>
+                                    <td th:text="${course.teacher}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-primary" id="btn_submit" type="button">提交</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="white-box">
+                        <h3 class="box-title" th:text="以下课程为你已选的课程"></h3>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>课程代码</th>
+                                    <th>课程名称</th>
+                                    <th>学分</th>
+                                    <th>上课时间</th>
+                                    <th>任课老师</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="course:${sedCourses}">
+                                    <td th:text="${course.cid}"></td>
+                                    <td th:text="${course.cname}"></td>
+                                    <td th:text="${course.credit}"></td>
+                                    <td th:text="${course.time}"></td>
+                                    <td th:text="${course.teacher}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- jQuery -->
+<script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Menu Plugin JavaScript -->
+<script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<!--slimscroll JavaScript -->
+<script src="js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="js/waves.js"></script>
+<script src="js/myjs.js"></script>
+<script src="js/search.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="js/custom.min.js"></script>
+</body>
+</html>
