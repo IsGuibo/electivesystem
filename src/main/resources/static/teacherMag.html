@@ -75,8 +75,9 @@
                 </li>
                 <li>
                     <a class="profile-pic" href="#"> <img alt="user-img" class="img-circle"
-                                                          src="plugins/images/users/hritik.jpg" width="36"><b class="hidden-xs"
-                                                                                           th:text="${teacher.name}"></b></a>
+                                                          src="plugins/images/users/hritik.jpg" width="36"><b
+                            class="hidden-xs"
+                            th:text="${teacher.name}"></b></a>
                 </li>
             </ul>
         </div>
@@ -92,7 +93,7 @@
         <div class="sidebar-nav slimscrollsidebar">
             <div class="sidebar-head">
                 <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span
-                        class="hide-menu">Navigation</span></h3>
+                        class="hide-menu">选课系统</span></h3>
             </div>
             <ul class="nav" id="side-menu">
 
@@ -133,7 +134,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="white-box">
+                    <div>
                         <h3 class="box-title">总览</h3>
 
                         <div class="row">
@@ -172,61 +173,76 @@
                         </div>
 
                     </div>
-                </div>
-                <div class="col-md-12 col-lg-5 col-sm-12">
-                    <div class="white-box">
-                        <h3 class="box-title">通知</h3>
-                        <div class="comment-center p-t-10">
-                            <div class="comment-body">
-                                <div class="user-img"><img alt="user" class="img-circle" src="/plugins/images/mju.png">
-                                </div>
-                                <div class="mail-contnet">
-                                    <h5>闽江学院计控学院</h5><span class="time">2019/12/21 18:07</span>
-                                    <br><span class="mail-desc">闽江学院计控学院2019-2020学生选修课选课将在12月22号20点开始，届时其老师注意您所任教的科目上课信息，请勿因没有留意选课网上发布的有关教务教学等安排和通知的信息，而导致延误课程、考试、其他有关活动</span>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-13 col-sm-12 col-xs-12">
+                            <div class="white-box">
+                                <h3 class="box-title">历年科目数图</h3>
+                                <ul class="list-inline text-right">
+                                    <li>
+                                        <h5><i class="fa fa-circle m-r-5 text-info"></i>历年未选科目数</h5></li>
+                                </ul>
+                                <div id="ct-visits" style="height: 405px;"></div>
                             </div>
-                            <div class="comment-body">
-                                <div class="user-img"><img alt="user" class="img-circle" src="/plugins/images/mju.png">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-5 col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title">通知</h3>
+                            <div class="comment-center p-t-10">
+                                <div class="comment-body">
+                                    <div class="user-img"><img alt="user" class="img-circle"
+                                                               src="/plugins/images/mju.png">
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <h5>闽江学院计控学院</h5><span class="time">2019/12/21 18:07</span>
+                                        <br><span class="mail-desc">闽江学院计控学院2019-2020学生选修课选课将在12月22号20点开始，届时其老师注意您所任教的科目上课信息，请勿因没有留意选课网上发布的有关教务教学等安排和通知的信息，而导致延误课程、考试、其他有关活动</span>
+                                    </div>
                                 </div>
-                                <div class="mail-contnet">
-                                    <h5>闽江学院计控学院</h5><span class="time">2019/12/21 18:08</span>
-                                    <br><span class="mail-desc">亲爱的老师：欢迎登录闽江学院计控学院选课系统</span>
+                                <div class="comment-body">
+                                    <div class="user-img"><img alt="user" class="img-circle"
+                                                               src="/plugins/images/mju.png">
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <h5>闽江学院计控学院</h5><span class="time">2019/12/21 18:08</span>
+                                        <br><span class="mail-desc">亲爱的老师：欢迎登录闽江学院计控学院选课系统</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-12 col-lg-7 col-sm-12">
-                    <div class="white-box">
-                        <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
-                            <select class="form-control pull-right row b-none" id="mySelect2">
-                                <option th:if="${option}" th:text="${option}"></option>
-                                <option th:each="ChoYear:${ChoYears}" th:text="${ChoYear}"
-                                        th:unless="${option}==${ChoYear}"></option>
-                            </select>
-                        </div>
-                        <h3 class="box-title">历年未选科目</h3>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>编号</th>
-                                    <th>名称</th>
-                                    <th>学分</th>
+                    <div class="col-md-12 col-lg-7 col-sm-12">
+                        <div class="white-box">
+                            <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
+                                <select class="form-control pull-right row b-none" id="mySelect2">
+                                    <option th:if="${option}" th:text="${option}"></option>
+                                    <option th:each="ChoYear:${ChoYears}" th:text="${ChoYear}"
+                                            th:unless="${option}==${ChoYear}"></option>
+                                </select>
+                            </div>
+                            <h3 class="box-title">历年未选科目</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>编号</th>
+                                        <th>名称</th>
+                                        <th>学分</th>
 
-                                </tr>
-                                </thead>
-                                <tbody th:each="c:${noChoCou}">
-                                <td th:text="${c.cid}"></td>
-                                <td th:text="${c.cname}"></td>
-                                <td th:text="${c.credit}"></td>
-                                </tbody>
-                            </table>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="c:${noChoCou}">
+                                    <td th:text="${c.cid}"></td>
+                                    <td th:text="${c.cname}"></td>
+                                    <td th:text="${c.credit}"></td>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
 
             </div>
         </div>
@@ -267,6 +283,31 @@
 <script src="js/dashboard1.js"></script>
 <script src="plugins/bower_components/toast-master/js/jquery.toast.js"></script>
 <script src="js/teacher.js"></script>
+<script th:inline="javascript">
+    new Chartist.Line('#ct-visits', {
+        labels: [[${ChoYears}]],
+        series: [
+            [[${yearList}]], [[${yearList}]]
+        ]
+
+    }, {
+        top: 0,
+        low: 1,
+        showPoint: true,
+        fullWidth: false,
+        plugins: [
+            Chartist.plugins.tooltip()
+        ],
+        axisY: {
+            labelInterpolationFnc: function (value) {
+                if (value % 1 === 0) {
+                    return value;
+                }
+            }
+        },
+        showArea: true
+    });
+</script>
 
 </body>
 

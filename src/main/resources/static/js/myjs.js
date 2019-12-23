@@ -11,13 +11,9 @@ function test() {
 
     $.ajax({
         type:'get',
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.setRequestHeader("Content-Type", "application/json");
-        },
         url:'/selectCou/do?cids='+value.toString(),
         success:function (data) {
-            window.alert(JSON.stringify(data)+"\n失败原因：您已经选择了这些课程")
+            window.alert(JSON.stringify(data))
 
         }
     })

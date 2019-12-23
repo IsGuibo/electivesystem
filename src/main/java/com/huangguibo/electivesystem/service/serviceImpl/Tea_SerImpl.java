@@ -9,6 +9,7 @@ import com.huangguibo.electivesystem.service.Tea_Ser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +36,8 @@ public class Tea_SerImpl implements Tea_Ser {
     }
 
     @Override
-    public int updateScore(int grade, long sid, long cid) {
-        return teacherDao.updateScore(grade,sid,cid);
+    public void updateScore(int grade, long sid, long cid) {
+        teacherDao.updateScore(grade, sid, cid);
     }
 
     @Override
@@ -65,6 +66,16 @@ public class Tea_SerImpl implements Tea_Ser {
     @Override
     public List<Course> getNoChoCou(String choYear) {
         return teacherDao.getNoChoCou(choYear);
+    }
+
+    @Override
+    public List<Integer> getYearNum() {
+        List<String> list = teacherDao.getChoYear();
+        List<Integer> yearList = new ArrayList<>();
+        for (String s : list) {
+            yearList.add(teacherDao.getNoChoCou(s).size());
+        }
+        return yearList;
     }
 
 

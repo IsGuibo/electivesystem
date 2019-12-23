@@ -19,7 +19,7 @@ public interface CourseDao {
 
     @Select("SELECT * FROM student")
     List<HashMap> getC_T();
-    @Insert("INSERT INTO SC (sid,cid) VALUES (#{sid},#{cid})")
+    @Insert("INSERT INTO sc (sid,cid) VALUES (#{sid},#{cid})")
     int addSc(long sid,long cid);
 
     @Select("SELECT course.cid,cname,credit,time,introduction,teacher.`name` as 'teacher' FROM course JOIN sc ON course.cid = sc.cid JOIN teacher ON teacher.tid = course.teacher WHERE sid = #{sid}")

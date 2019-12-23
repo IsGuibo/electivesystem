@@ -3,7 +3,6 @@ package com.huangguibo.electivesystem.service.serviceImpl;
 import com.huangguibo.electivesystem.DAO.CourseDao;
 import com.huangguibo.electivesystem.domain.Course;
 import com.huangguibo.electivesystem.service.Cou_Ser;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +35,7 @@ public class Cou_SerImpl implements Cou_Ser {
             courseDao.updateCap(cid);
             return true;
         }catch (Exception e){
+            System.out.println(e.toString());
             return false;
         }
     }

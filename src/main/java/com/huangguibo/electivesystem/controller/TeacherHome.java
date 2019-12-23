@@ -18,15 +18,16 @@ public class TeacherHome {
     @GetMapping("/TeacherMag")
     String TeacherMag(@RequestParam(name = "id") long id,@RequestParam(required = false)String option, Model model){
         Teacher teacher = tea_ser.getById(id);
-        model.addAttribute("teacher",teacher);
-        model.addAttribute("courses",cou_ser.getCouByTid(id));
+        model.addAttribute("teacher", teacher);
+        model.addAttribute("courses", cou_ser.getCouByTid(id));
         model.addAllAttributes(tea_ser.getTotal(id));
-        model.addAttribute("ChoYears",tea_ser.getChoYear());
-        if(option==null)
-            model.addAttribute("noChoCou",tea_ser.getNoChoCou("2019-2020上"));
+        model.addAttribute("ChoYears", tea_ser.getChoYear());
+        if (option == null)
+            model.addAttribute("noChoCou", tea_ser.getNoChoCou("2019-2020上"));
         else
-            model.addAttribute("noChoCou",tea_ser.getNoChoCou(option));
-        model.addAttribute("option",option);
+            model.addAttribute("noChoCou", tea_ser.getNoChoCou(option));
+        model.addAttribute("option", option);
+        model.addAttribute("yearList", tea_ser.getYearNum());
         return "teacherMag";
     }
 }

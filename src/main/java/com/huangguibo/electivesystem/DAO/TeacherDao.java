@@ -48,9 +48,14 @@ public interface TeacherDao {
             "WHERE\n" +
             "\tteacher = ${tid}) AS temp2)As\n" +
             "\ttemp3")
-    Map<String,Double> getPassRate2(long tid);
-    @Select("SELECT choyear FROM sc GROUP BY choyear")
+    Map<String, Double> getPassRate2(long tid);
+
+    @Select("SELECT choyear FROM sc GROUP BY choyear ORDER BY choyear")
     List<String> getChoYear();
+
     @Select("SELECT * FROM course WHERE cid  NOT in (SELECT cid From sc WHERE choyear ='${choYear}')")
     List<Course> getNoChoCou(String choYear);
+
+    @Select("SELECT COUNT(*) FROM sc GROUP BY choyear")
+    List<Integer> getYearNum();
 }
